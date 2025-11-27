@@ -4,16 +4,15 @@ const TOTAL_PER_LOT = 10;
 const NUM_LOTS = 40;
 const STORAGE_KEY = 'soiree_nufi_state_v1';
 
-// ----- Firebase Configuration (DEMO) -----
-// REMPLACEZ CECI PAR VOTRE CONFIGURATION FIREBASE
+// ----- Firebase Configuration -----
 const firebaseConfig = {
-    apiKey: "API_KEY_ICI",
-    authDomain: "PROJET_ID.firebaseapp.com",
-    databaseURL: "https://PROJET_ID-default-rtdb.firebaseio.com",
-    projectId: "PROJET_ID",
-    storageBucket: "PROJET_ID.appspot.com",
-    messagingSenderId: "SENDER_ID",
-    appId: "APP_ID"
+    apiKey: "AIzaSyD7Z0yn2txhsg5uoD6e83p6kpDFqn_Q1BQ",
+    authDomain: "soiree-nufi-ten-thu-2026.firebaseapp.com",
+    projectId: "soiree-nufi-ten-thu-2026",
+    storageBucket: "soiree-nufi-ten-thu-2026.firebasestorage.app",
+    messagingSenderId: "747063857874",
+    appId: "1:747063857874:web:a75bc66aa079efee7b930b",
+    measurementId: "G-1EDFQ2SG7V"
 };
 
 // Initialize Firebase
@@ -21,14 +20,10 @@ let db = null;
 let useFirebase = false;
 
 try {
-    if (firebaseConfig.apiKey !== "API_KEY_ICI") {
-        firebase.initializeApp(firebaseConfig);
-        db = firebase.database();
-        useFirebase = true;
-        console.log("Firebase initialisé");
-    } else {
-        console.warn("Configuration Firebase de démo détectée. Mode local uniquement.");
-    }
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.database();
+    useFirebase = true;
+    console.log("Firebase initialisé");
 } catch (e) {
     console.error("Erreur initialisation Firebase:", e);
 }
