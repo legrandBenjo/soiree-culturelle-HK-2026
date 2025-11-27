@@ -1,65 +1,51 @@
 <!DOCTYPE html>
-<html lang="fr">
+<img id="logo" class="logo" src="logo.png" alt="Logo association" onerror="this.style.display='none'" />
+<div>
+    <h1>Validation - Soirée culturelle Nufi Tên Thu — Mai 2026</h1>
+    <div class="small">Scanner / valider les lots de billets (10 entrées par lot)</div>
+</div>
+</header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation - Soirée Culturelle Nufi Tên Thu 2026</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Load html5-qrcode library -->
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-</head>
-
-<body>
-    <div class="container">
-        <header>
-            <img id="logo" class="logo" src="logo.png" alt="Logo association" onerror="this.style.display='none'" />
-            <div>
-                <h1>Validation - Soirée culturelle Nufi Tên Thu — Mai 2026</h1>
-                <div class="small">Scanner / valider les lots de billets (10 entrées par lot)</div>
-            </div>
-        </header>
-
-        <div class="card">
-            <div class="controls">
-                <button id="startCam" class="primary">Démarrer la caméra</button>
-                <button id="stopCam">Arrêter</button>
-                <button id="resetBtn">Réinitialiser (admin)</button>
-                <button id="exportBtn">Exporter état (JSON)</button>
-                <input id="importFile" type="file" accept="application/json" style="display:none;" />
-                <button onclick="document.getElementById('importFile').click()">Importer</button>
-                <button id="statsBtn">Statistiques</button>
-            </div>
-
-            <div class="scanner card" style="margin-top:12px;align-items:flex-start">
-                <div id="reader"></div>
-                <div style="flex:1">
-                    <div class="status" id="status">Statut : prêt</div>
-                    <div class="info" id="info">Restant par lot affiché ci-dessous.</div>
-                    <div style="margin-top:10px">
-                        <div class="manual">
-                            <input id="manualInput"
-                                placeholder="Entrer code QR manuellement (ex: SOIREE-CULTURELLE-NUFI-TEN-THU-2026-LOT01)"
-                                style="flex:1;padding:8px;border-radius:8px;border:1px solid #ccc" />
-                            <button id="manualBtn">Valider</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card" style="margin-top:12px">
-                <h3>Lots (10 entrées chacun)</h3>
-                <div class="lotlist" id="lotlist"></div>
-            </div>
-        </div>
-
-        <footer>
-            Application hors-ligne - les données sont stockées localement (localStorage). Vous pouvez exporter/importer
-            l'état.
-        </footer>
+<div class="card">
+    <div class="controls">
+        <button id="startCam" class="primary">Démarrer la caméra</button>
+        <button id="stopCam">Arrêter</button>
+        <button id="resetBtn">Réinitialiser (admin)</button>
+        <button id="exportBtn">Exporter état (JSON)</button>
+        <input id="importFile" type="file" accept="application/json" style="display:none;" />
+        <button onclick="document.getElementById('importFile').click()">Importer</button>
+        <button id="statsBtn">Statistiques</button>
     </div>
 
-    <script src="app.js"></script>
+    <div class="scanner card" style="margin-top:12px;align-items:flex-start">
+        <div id="reader"></div>
+        <div style="flex:1">
+            <div class="status" id="status">Statut : prêt</div>
+            <div class="info" id="info">Restant par lot affiché ci-dessous.</div>
+            <div style="margin-top:10px">
+                <div class="manual">
+                    <input id="manualInput"
+                        placeholder="Entrer code QR manuellement (ex: SOIREE-CULTURELLE-NUFI-TEN-THU-2026-LOT01)"
+                        style="flex:1;padding:8px;border-radius:8px;border:1px solid #ccc" />
+                    <button id="manualBtn">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+        <h3>Lots (10 entrées chacun)</h3>
+        <div class="lotlist" id="lotlist"></div>
+    </div>
+</div>
+
+<footer>
+    Application hors-ligne - les données sont stockées localement (localStorage). Vous pouvez exporter/importer
+    l'état.
+</footer>
+</div>
+
+<script src="app.js"></script>
 </body>
 
 </html>

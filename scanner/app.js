@@ -4,6 +4,35 @@ const TOTAL_PER_LOT = 10;
 const NUM_LOTS = 40;
 const STORAGE_KEY = 'soiree_nufi_state_v1';
 
+// ----- Firebase Configuration (DEMO) -----
+// REMPLACEZ CECI PAR VOTRE CONFIGURATION FIREBASE
+const firebaseConfig = {
+    apiKey: "API_KEY_ICI",
+    authDomain: "PROJET_ID.firebaseapp.com",
+    databaseURL: "https://PROJET_ID-default-rtdb.firebaseio.com",
+    projectId: "PROJET_ID",
+    storageBucket: "PROJET_ID.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "APP_ID"
+};
+
+// Initialize Firebase
+let db = null;
+let useFirebase = false;
+
+try {
+    if (firebaseConfig.apiKey !== "API_KEY_ICI") {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        useFirebase = true;
+        console.log("Firebase initialisé");
+    } else {
+        console.warn("Configuration Firebase de démo détectée. Mode local uniquement.");
+    }
+} catch (e) {
+    console.error("Erreur initialisation Firebase:", e);
+}
+
 // ----- State management -----
 function makeInitialState() {
     const s = {};
@@ -14,23 +43,54 @@ function makeInitialState() {
     return s;
 }
 
+let state = makeInitialState();
+
 function loadState() {
-    try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return makeInitialState();
-        const parsed = JSON.parse(raw);
-        // basic validation
-        if (Object.keys(parsed).length !== NUM_LOTS) return makeInitialState();
-        return parsed;
-    } catch (e) { return makeInitialState(); }
+    if (useFirebase) {
+        // Listen for real-time updates
+        db.ref('tickets').on('value', (snapshot) => {
+            const val = snapshot.val();
+            if (val) {
+                state = val;
+                renderLots();
+                setStatus('Données synchronisées', 'valid');
+            } else {
+                // If empty, initialize
+                saveState();
+            }
+        }, (error) => {
+            console.error("Erreur lecture Firebase:", error);
+            setStatus('Erreur synchro - Mode hors-ligne', 'invalid');
+        });
+    } else {
+        // LocalStorage fallback
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (Object.keys(parsed).length === NUM_LOTS) {
+                    state = parsed;
+                }
+            }
+        } catch (e) { console.error(e); }
+        renderLots();
+    }
 }
 
 function saveState() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    renderLots();
+    if (useFirebase) {
+        db.ref('tickets').set(state).catch(e => {
+            console.error("Erreur sauvegarde Firebase:", e);
+            setStatus('Erreur sauvegarde', 'invalid');
+        });
+    } else {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        renderLots();
+    }
 }
 
-let state = loadState();
+// Initial load
+loadState();
 
 // ----- UI -----
 const statusElement = document.getElementById('status');
