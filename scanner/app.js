@@ -121,24 +121,43 @@ document.getElementById('resetBtn').addEventListener('click', () => {
     } else alert('Mot de passe incorrect');
 });
 
+// Statistics
+document.getElementById('statsBtn').addEventListener('click', () => {
+    let totalCapacity = NUM_LOTS * TOTAL_PER_LOT;
+    let totalUsed = 0;
+
+    for (let key in state) {
+        totalUsed += state[key].used;
+    }
+
+    let remaining = totalCapacity - totalUsed;
+    let percent = ((totalUsed / totalCapacity) * 100).toFixed(1);
+
+    alert(`STATISTIQUES GLOBALES\n\n` +
+        `Capacité totale : ${totalCapacity}\n` +
+        `Entrées validées : ${totalUsed}\n` +
+        `Entrées restantes : ${remaining}\n` +
+        `Taux de remplissage : ${percent}%`);
+});
+
 // ----- Camera & scanning with html5-qrcode -----
 let html5QrCode;
 let isScanning = false;
 
 async function startCamera() {
     if (isScanning) return;
-    
+
     try {
         html5QrCode = new Html5Qrcode("reader");
         const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-        
+
         await html5QrCode.start(
-            { facingMode: "environment" }, 
-            config, 
-            onScanSuccess, 
+            { facingMode: "environment" },
+            config,
+            onScanSuccess,
             onScanFailure
         );
-        
+
         isScanning = true;
         setStatus('Caméra démarrée — prêt à scanner');
         document.getElementById('startCam').style.display = 'none';
@@ -151,7 +170,7 @@ async function startCamera() {
 
 async function stopCamera() {
     if (!isScanning) return;
-    
+
     try {
         await html5QrCode.stop();
         html5QrCode.clear();
@@ -167,16 +186,16 @@ async function stopCamera() {
 let lastScanned = null;
 function onScanSuccess(decodedText, decodedResult) {
     if (decodedText === lastScanned) return; // simple debounce
-    
+
     lastScanned = decodedText;
     const lot = parseCode(decodedText);
-    
-    if (!lot) { 
-        setStatus('QR non reconnu', 'invalid'); 
+
+    if (!lot) {
+        setStatus('QR non reconnu', 'invalid');
     } else {
         validateLot(lot);
     }
-    
+
     // Clear lastScanned after a delay to allow re-scanning the same code if needed
     setTimeout(() => { lastScanned = null; }, 2000);
 }
