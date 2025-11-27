@@ -5,19 +5,6 @@ const NUM_LOTS = 40;
 const STORAGE_KEY = 'soiree_nufi_state_v1';
 
 // ----- Firebase Configuration -----
-const firebaseConfig = {
-    apiKey: "AIzaSyD7Z0yn2txhsg5uoD6e83p6kpDFqn_Q1BQ",
-    authDomain: "soiree-nufi-ten-thu-2026.firebaseapp.com",
-    projectId: "soiree-nufi-ten-thu-2026",
-    storageBucket: "soiree-nufi-ten-thu-2026.firebasestorage.app",
-    messagingSenderId: "747063857874",
-    appId: "1:747063857874:web:a75bc66aa079efee7b930b",
-    measurementId: "G-1EDFQ2SG7V"
-};
-
-// Initialize Firebase
-let db = null;
-let useFirebase = false;
 
 try {
     firebase.initializeApp(firebaseConfig);
