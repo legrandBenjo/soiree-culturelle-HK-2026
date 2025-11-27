@@ -24,11 +24,19 @@ body {
     padding: 20px;
     text-align: center;
     background-color: var(--card-bg);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.app-logo {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -51,7 +59,7 @@ h1 {
 }
 
 /* Hide the library's default header/footer if possible or style them */
-#reader__dashboard_section_csr span, 
+#reader__dashboard_section_csr span,
 #reader__dashboard_section_swaplink {
     display: none !important;
 }
@@ -70,8 +78,15 @@ h1 {
 }
 
 @keyframes slideIn {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .valid {

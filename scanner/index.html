@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,15 @@
     <!-- Load html5-qrcode library -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
+
 <body>
     <div class="container">
+        <img src="logo.png" alt="Logo Association Nufi Nten Tht Suisse" class="app-logo">
         <h1>Scanner de Billets</h1>
         <p class="subtitle">Soirée Culturelle NUFI 2026</p>
-        
+
         <div id="reader"></div>
-        
+
         <div id="result-container" class="hidden">
             <div id="status-icon"></div>
             <h2 id="status-text"></h2>
@@ -29,4 +32,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>
