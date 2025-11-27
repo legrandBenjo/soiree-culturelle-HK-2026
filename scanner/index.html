@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Soirée Culturelle</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Load html5-qrcode library -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Scanner de Billets</h1>
+        <p class="subtitle">Soirée Culturelle NUFI 2026</p>
+        
+        <div id="reader"></div>
+        
+        <div id="result-container" class="hidden">
+            <div id="status-icon"></div>
+            <h2 id="status-text"></h2>
+            <p id="ticket-info"></p>
+            <button id="scan-again-btn">Scanner à nouveau</button>
+        </div>
+
+        <div class="controls">
+            <p>Pointez la caméra vers le QR Code du billet.</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

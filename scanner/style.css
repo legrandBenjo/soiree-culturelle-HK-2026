@@ -1,0 +1,133 @@
+:root {
+    --primary-color: #4a90e2;
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+    --bg-color: #f5f7fa;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.subtitle {
+    margin-top: 0;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+#reader {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Hide the library's default header/footer if possible or style them */
+#reader__dashboard_section_csr span, 
+#reader__dashboard_section_swaplink {
+    display: none !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#result-container {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.valid {
+    background-color: rgba(46, 204, 113, 0.1);
+    border: 2px solid var(--success-color);
+}
+
+.invalid {
+    background-color: rgba(231, 76, 60, 0.1);
+    border: 2px solid var(--error-color);
+}
+
+#status-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.valid #status-icon::before {
+    content: '✅';
+}
+
+.invalid #status-icon::before {
+    content: '❌';
+}
+
+#status-text {
+    margin: 10px 0;
+}
+
+.valid #status-text {
+    color: var(--success-color);
+}
+
+.invalid #status-text {
+    color: var(--error-color);
+}
+
+#scan-again-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+#scan-again-btn:hover {
+    background-color: #357abd;
+}
+
+.controls {
+    margin-top: auto;
+    padding: 20px;
+    color: #95a5a6;
+    font-size: 14px;
+}
