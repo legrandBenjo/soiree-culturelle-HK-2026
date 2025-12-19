@@ -35,4 +35,4 @@ Ce projet contient l'application de validation des billets pour la Soirée Cultu
 
 ## Auteur
 
-Association Nufi Nten Tht Suisse
+Association Nufi Nten Thu Suisse
